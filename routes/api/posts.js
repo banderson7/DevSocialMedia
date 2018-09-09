@@ -50,7 +50,7 @@ router.post(
       user: req.user.id
     });
 
-    newPost.save().then(post => res.json(post));
+    newPost.save().then(post => res.status(201).json(post));
   }
 );
 
