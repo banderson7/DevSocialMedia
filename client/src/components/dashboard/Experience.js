@@ -22,10 +22,19 @@ class Experience extends Component {
             <Moment format="YYYY/MM/DD">{exp.to}</Moment>
           )}
         </td>
-        <td>
+        <td style={{ textAlign: "right" }}>
+          {/* TODO: UPDATE TO EDIT EXPERIENCE*/}
+          <button
+            onClick={this.onDeleteClick.bind(this, exp._id)}
+            className="btn"
+            title="Edit this experience"
+          >
+            E
+          </button>{" "}
           <button
             onClick={this.onDeleteClick.bind(this, exp._id)}
             className="btn btn-danger"
+            title="Delete this experience"
           >
             X
           </button>
@@ -41,7 +50,7 @@ class Experience extends Component {
               <th>Company</th>
               <th>Title</th>
               <th>When</th>
-              <th />
+              <th style={{ textAlign: "right" }}>Options</th>
             </tr>
             {experience}
           </thead>
