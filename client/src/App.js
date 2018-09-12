@@ -10,6 +10,7 @@ import store from "./store";
 
 import PrivateRoute from "./components/common/PrivateRoute";
 
+import NotFound from "./components/not-found/NotFound";
 import NavBar from "./components/layout/NavBar";
 import Footer from "./components/layout/Footer";
 import Landing from "./components/layout/Landing";
@@ -21,6 +22,7 @@ import EditProfile from "./components/edit-profile/EditProfile";
 import AddExperience from "./components/add-history/AddExperience";
 import AddEducation from "./components/add-history/AddEducation";
 import Profiles from "./components/profiles/Profiles";
+import Profile from "./components/profile/Profile";
 
 import "./App.css";
 
@@ -57,6 +59,7 @@ class App extends Component {
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
               <Route exact path="/profiles" component={Profiles} />
+              <Route exact path="/profile/:handle" component={Profile} />
               <Switch>
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
               </Switch>
@@ -88,6 +91,7 @@ class App extends Component {
                   component={AddEducation}
                 />
               </Switch>
+              <Route exact path="/not-found" component={NotFound} />
             </div>
             <Footer />
           </div>
