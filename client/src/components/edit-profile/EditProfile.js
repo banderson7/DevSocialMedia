@@ -80,10 +80,11 @@ class EditProfile extends Component {
         skills: skillsCSV,
         githubusername: profile.githubusername,
         bio: profile.bio,
-        twitter: profile.twitter,
-        facebook: profile.facebook,
-        linkedin: profile.linkedin,
-        youtube: profile.youtube
+        twitter: profile.social.twitter,
+        facebook: profile.social.facebook,
+        linkedin: profile.social.linkedin,
+        instagram: profile.social.instagram,
+        youtube: profile.social.youtube
       });
     }
   }
@@ -95,12 +96,13 @@ class EditProfile extends Component {
       handle: this.state.handle,
       company: this.state.company,
       website: this.state.website,
-      locatcion: this.state.locatcion,
+      location: this.state.location,
       status: this.state.status,
       skills: this.state.skills,
       githubusername: this.state.githubusername,
       bio: this.state.bio,
       twitter: this.state.twitter,
+      facebook: this.state.facebook,
       linkedin: this.state.linkedin,
       youtube: this.state.youtube,
       instagram: this.state.instagram
