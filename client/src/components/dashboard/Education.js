@@ -30,14 +30,14 @@ class Education extends Component {
             className="btn"
             title="Edit this education"
           >
-            E
+            <i className="fa fa-edit fa-lg" />
           </button>{" "}
           <button
             onClick={this.onDeleteClick.bind(this, edu._id)}
             className="btn btn-danger"
             title="Delete this education"
           >
-            X
+            <i className="fa fa-trash-alt fa-lg" />
           </button>
         </td>
       </tr>

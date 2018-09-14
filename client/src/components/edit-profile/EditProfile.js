@@ -300,7 +300,7 @@ class EditProfile extends Component {
                 {socialInputs}
                 <input
                   type="submit"
-                  value="Submit"
+                  value="Save Changes"
                   className="btn btn-info btn-block mt-4"
                 />
               </form>

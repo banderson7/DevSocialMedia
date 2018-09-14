@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import Moment from "react-moment";
 
 class ProfileGithub extends Component {
   constructor(props) {
@@ -9,17 +10,18 @@ class ProfileGithub extends Component {
       clientId: "669c91f970cb7c2e7f13",
       clientSecret: "90c4b401bf9273be1dea5ff680a94d7ab792a5f8",
       count: 5,
-      sort: "created: asc",
+      sort: "updated",
+      direction: "desc",
       repos: []
     };
   }
 
   componentDidMount() {
     const { username } = this.props;
-    const { count, sort, clientId, clientSecret } = this.state;
+    const { count, sort, clientId, clientSecret, direction } = this.state;
 
     fetch(
-      `https://api.github.com/users/${username}/repos?per_page${count}&sort=${sort}&client_id=${clientId}&client_secre=${clientSecret}`
+      `https://api.github.com/users/${username}/repos?per_page=${count}&sort=${sort}&direction=${direction}`
     )
       .then(res => res.json())
       .then(data => {
@@ -56,6 +58,28 @@ class ProfileGithub extends Component {
                 </span>
               </div>
             </div>
+            <div className="col-md-6">
+              <div className="col-md-6">
+                <div className="pb-2">
+                  <span>
+                    <strong>Created: </strong>
+                    {<Moment format="MM/DD/YYYY">{repo.created_at}</Moment>}
+                  </span>
+                </div>
+                <div className="pb-2">
+                  <span>
+                    <strong>Last Update: </strong>
+                    {<Moment format="MM/DD/YYYY">{repo.updated_at}</Moment>}
+                  </span>
+                </div>
+                <div className="pb-2">
+                  <span>
+                    <strong>Last Push: </strong>
+                    {<Moment format="MM/DD/YYYY">{repo.pushed_at}</Moment>}
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       ));
@@ -63,10 +87,15 @@ class ProfileGithub extends Component {
       repoItems = <p>No repos found...</p>;
     }
 
+    const { username } = this.props;
+
     return (
       <div ref="myRef">
         <hr />
-        <h2 className="mb-4">Latest GitHub Repos:</h2>
+        <h2 className="mb-4">
+          Latest GitHub Repos ({username}
+          ):
+        </h2>
         {repoItems}
       </div>
     );

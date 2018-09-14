@@ -29,14 +29,14 @@ class Experience extends Component {
             className="btn"
             title="Edit this experience"
           >
-            E
+            <i className="fa fa-edit fa-lg" />
           </button>{" "}
           <button
             onClick={this.onDeleteClick.bind(this, exp._id)}
             className="btn btn-danger"
             title="Delete this experience"
           >
-            X
+            <i className="fa fa-trash-alt fa-lg" />
           </button>
         </td>
       </tr>
