@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import Moment from "react-moment";
 
@@ -7,8 +6,6 @@ class ProfileGithub extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      clientId: "669c91f970cb7c2e7f13",
-      clientSecret: "90c4b401bf9273be1dea5ff680a94d7ab792a5f8",
       count: 5,
       sort: "updated",
       direction: "desc",
@@ -18,7 +15,7 @@ class ProfileGithub extends Component {
 
   componentDidMount() {
     const { username } = this.props;
-    const { count, sort, clientId, clientSecret, direction } = this.state;
+    const { count, sort, direction } = this.state;
 
     fetch(
       `https://api.github.com/users/${username}/repos?per_page=${count}&sort=${sort}&direction=${direction}`
@@ -41,9 +38,9 @@ class ProfileGithub extends Component {
           <div className="row">
             <div className="col-md-6">
               <h4>
-                <Link to={repo.html_url} className="text-info" target="_blank">
+                <a href={repo.html_url} className="text-info" target="_blank">
                   {repo.name}
-                </Link>
+                </a>
               </h4>
               <p>{repo.description}</p>
               <div className="col-md-6">

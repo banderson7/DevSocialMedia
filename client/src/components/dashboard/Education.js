@@ -24,7 +24,7 @@ class Education extends Component {
           )}
         </td>
         <td style={{ textAlign: "right" }}>
-          {/* TODO: UPDATE TO EDIT EDUCATION*/}
+          {/* TODO: UPDATE TO EDIT EDUCATION
           <button
             onClick={this.onDeleteClick.bind(this, edu._id)}
             className="btn"
@@ -32,6 +32,7 @@ class Education extends Component {
           >
             <i className="fa fa-edit fa-lg" />
           </button>{" "}
+          */}
           <button
             onClick={this.onDeleteClick.bind(this, edu._id)}
             className="btn btn-danger"
