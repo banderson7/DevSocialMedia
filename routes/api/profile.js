@@ -276,6 +276,100 @@ router.delete(
   }
 );
 
+// @route   PUT api/profile/education/:edu_id
+// @desc    Update education on profile
+// @access  Private
+router.put(
+  "/education/:edu_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateEducationInput(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      // Return any errors
+      return res.status(400).json(errors);
+    }
+
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        // Get edit index
+        const editIndex = profile.education
+          .map(item => item.id)
+          .indexOf(req.params.edu_id);
+
+        if (editIndex === -1) {
+          errors.noeducation = "No education found with that ID";
+          return res.status(404).json(errors);
+        }
+
+        const editEdu = {
+          school: req.body.school,
+          degree: req.body.degree,
+          fieldofstudy: req.body.fieldofstudy,
+          from: req.body.from,
+          to: req.body.to,
+          current: req.body.current,
+          description: req.body.description
+        };
+
+        // Update education
+        profile.education[editIndex] = editEdu;
+
+        // Save
+        profile.save().then(profile => res.json(profile));
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
+// @route   PUT api/profile/experience/:exp_id
+// @desc    Update experience on profile
+// @access  Private
+router.put(
+  "/experience/:exp_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    const { errors, isValid } = validateExperienceInput(req.body);
+
+    // Check Validation
+    if (!isValid) {
+      // Return any errors
+      return res.status(400).json(errors);
+    }
+
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        // Get edit index
+        const editIndex = profile.experience
+          .map(item => item.id)
+          .indexOf(req.params.exp_id);
+
+        if (editIndex === -1) {
+          errors.noexperience = "No experience found with that ID";
+          return res.status(404).json(errors);
+        }
+
+        const editExp = {
+          title: req.body.title,
+          company: req.body.company,
+          location: req.body.location,
+          from: req.body.from,
+          to: req.body.to,
+          current: req.body.current,
+          description: req.body.description
+        };
+
+        // Update education
+        profile.experience[editIndex] = editExp;
+
+        // Save
+        profile.save().then(profile => res.json(profile));
+      })
+      .catch(err => res.status(404).json(err));
+  }
+);
+
 // @route   DELETE api/profile
 // @desc    Delete user and profile
 // @access  Private
