@@ -174,16 +174,12 @@ class EditProfile extends Component {
         value: 0
       },
       {
-        label: "Developer",
-        value: "Developer"
+        label: "Software Engineer",
+        value: "Software Engineer"
       },
       {
-        label: "Junior Developer",
+        label: "QA Engineer",
         value: "Junior Developer"
-      },
-      {
-        label: "Senior Developer",
-        value: "Senior Developer"
       },
       {
         label: "Intern",
@@ -194,12 +190,8 @@ class EditProfile extends Component {
         value: "Student"
       },
       {
-        label: "Hobby",
-        value: "Hobby"
-      },
-      {
-        label: "Other",
-        value: "Other"
+        label: "Hobbyist",
+        value: "Hobbyist"
       }
     ];
 
