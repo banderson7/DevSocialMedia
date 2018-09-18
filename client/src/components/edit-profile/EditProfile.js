@@ -8,6 +8,7 @@ import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import { createProfile, getCurrentProfile } from "../../actions/profileActions";
 import isEmpty from "../../validation/is-empty";
+import { StatusOptions } from "../common/StatusOptions";
 
 class EditProfile extends Component {
   constructor(props) {
@@ -167,34 +168,6 @@ class EditProfile extends Component {
       );
     }
 
-    //select options for status
-    const options = [
-      {
-        label: "Select Professional Status",
-        value: 0
-      },
-      {
-        label: "Software Engineer",
-        value: "Software Engineer"
-      },
-      {
-        label: "QA Engineer",
-        value: "Junior Developer"
-      },
-      {
-        label: "Intern",
-        value: "Intern"
-      },
-      {
-        label: "Student",
-        value: "Student"
-      },
-      {
-        label: "Hobbyist",
-        value: "Hobbyist"
-      }
-    ];
-
     return (
       <div className="create-profile">
         <div className="container">
@@ -222,7 +195,7 @@ class EditProfile extends Component {
                   name="status"
                   value={this.state.status}
                   onChange={this.onChange}
-                  options={options}
+                  options={StatusOptions}
                   error={errors.status}
                   info="* Select the option that closest describes your current career level"
                 />

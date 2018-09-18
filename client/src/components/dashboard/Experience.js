@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import PropTypes from "prop-types";
 import Moment from "react-moment";
 import { deleteExperience } from "../../actions/profileActions";
+import { Link } from "react-router-dom";
 
 class Experience extends Component {
   onDeleteClick(id) {
@@ -23,15 +24,12 @@ class Experience extends Component {
           )}
         </td>
         <td style={{ textAlign: "right" }}>
-          {/* TODO: UPDATE TO EDIT EXPERIENCE
-          <button
-            onClick={this.onDeleteClick.bind(this, exp._id)}
-            className="btn"
-            title="Edit this experience"
+          <Link
+            className="btn btn-secondary"
+            to={`/edit-experience/${exp._id}`}
           >
-            <i className="fa fa-edit fa-lg" />
-          </button>{" "}
-          */}
+            <i className="fa fa-edit fa-sm" />
+          </Link>{" "}
           <button
             onClick={this.onDeleteClick.bind(this, exp._id)}
             className="btn btn-danger"
