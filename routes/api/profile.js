@@ -323,6 +323,35 @@ router.put(
   }
 );
 
+// @route   GET api/profile/education/:edu_id
+// @desc    Get education on profile
+// @access  Private
+router.get(
+  "/education/:edu_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        // Get edit index
+        const editIndex = profile.education
+          .map(item => item.id)
+          .indexOf(req.params.edu_id);
+        if (editIndex === -1) {
+          errors.noeducation = "No education found with that ID1";
+          return res.status(404).json(errors);
+        }
+        const education = profile.education[editIndex];
+
+        res.json(education);
+      })
+      .catch(err =>
+        res
+          .status(404)
+          .json({ noeducation: "No education found with that ID2" })
+      );
+  }
+);
+
 // @route   PUT api/profile/experience/:exp_id
 // @desc    Update experience on profile
 // @access  Private
@@ -367,6 +396,35 @@ router.put(
         profile.save().then(profile => res.json(profile));
       })
       .catch(err => res.status(404).json(err));
+  }
+);
+
+// @route   GET api/profile/experience/:exp_id
+// @desc    Get experience on profile
+// @access  Private
+router.get(
+  "/experience/:exp_id",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    Profile.findOne({ user: req.user.id })
+      .then(profile => {
+        // Get edit index
+        const editIndex = profile.experience
+          .map(item => item.id)
+          .indexOf(req.params.exp_id);
+        if (editIndex === -1) {
+          errors.noexperience = "No experience found with that ID1";
+          return res.status(404).json(errors);
+        }
+        const experience = profile.experience[editIndex];
+
+        res.json(experience);
+      })
+      .catch(err =>
+        res
+          .status(404)
+          .json({ noexperience: "No experience found with that ID2" })
+      );
   }
 );
 

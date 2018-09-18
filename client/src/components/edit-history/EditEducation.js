@@ -4,9 +4,10 @@ import TextFieldGroup from "../common/TextFieldGroup";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { addEducation } from "../../actions/profileActions";
+import { updateEducation, getEducation } from "../../actions/profileActions";
+import isEmpty from "../../validation/is-empty";
 
-class AddEducation extends Component {
+class EditEducation extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -26,9 +27,42 @@ class AddEducation extends Component {
     this.onCheck = this.onCheck.bind(this);
   }
 
+  componentDidMount() {
+    this.props.getEducation(this.props.match.params.id);
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
+    }
+
+    if (nextProps.education) {
+      const education = nextProps.education;
+
+      education.school = !isEmpty(education.school) ? education.school : "";
+      education.degree = !isEmpty(education.degree) ? education.degree : "";
+      education.fieldofstudy = !isEmpty(education.fieldofstudy)
+        ? education.fieldofstudy
+        : "";
+      education.from = !isEmpty(education.from)
+        ? education.from.slice(0, 10)
+        : "";
+      education.to = !isEmpty(education.to) ? education.to.slice(0, 10) : "";
+      education.current = !isEmpty(education.current) ? education.current : "";
+      education.description = !isEmpty(education.description)
+        ? education.description
+        : "";
+
+      // Set component fields state
+      this.setState({
+        school: education.school,
+        degree: education.degree,
+        fieldofstudy: education.fieldofstudy,
+        from: education.from,
+        to: education.to,
+        current: education.current,
+        description: education.description
+      });
     }
   }
 
@@ -45,7 +79,11 @@ class AddEducation extends Component {
       description: this.state.description
     };
 
-    this.props.addEducation(eduData, this.props.history);
+    this.props.updateEducation(
+      this.props.match.params.id,
+      eduData,
+      this.props.history
+    );
   }
 
   onChange(e) {
@@ -61,15 +99,16 @@ class AddEducation extends Component {
 
   render() {
     const { errors } = this.state;
+
     return (
-      <div className="add-education">
+      <div className="edit-education">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
               <Link to="/dashboard" className="btn btn-light">
                 Go Back
               </Link>
-              <h1 className="display-4 text-center">Add Education</h1>
+              <h1 className="display-4 text-center">Edit Education</h1>
               <p className="lead text-center">
                 Add any school, bootcamp, etc that you have attended.
               </p>
@@ -149,18 +188,18 @@ class AddEducation extends Component {
   }
 }
 
-AddEducation.propTypes = {
-  addEducation: PropTypes.func.isRequired,
-  profile: PropTypes.object.isRequired,
+EditEducation.propTypes = {
+  updateEducation: PropTypes.func.isRequired,
+  getEducation: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired
 };
 
 const mapStateToProps = state => ({
-  profile: state.profile,
+  education: state.profile.education,
   errors: state.errors
 });
 
 export default connect(
   mapStateToProps,
-  { addEducation }
-)(withRouter(AddEducation));
+  { updateEducation, getEducation }
+)(withRouter(EditEducation));

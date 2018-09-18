@@ -7,6 +7,7 @@ import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import InputGroup from "../common/InputGroup";
 import SelectListGroup from "../common/SelectListGroup";
 import { createProfile } from "../../actions/profileActions";
+import { StatusOptions } from "../common/StatusOptions";
 
 class CreateProfile extends Component {
   constructor(props) {
@@ -116,42 +117,6 @@ class CreateProfile extends Component {
       );
     }
 
-    //select options for status
-    const options = [
-      {
-        label: "Select Professional Status",
-        value: 0
-      },
-      {
-        label: "Developer",
-        value: "Developer"
-      },
-      {
-        label: "Junior Developer",
-        value: "Junior Developer"
-      },
-      {
-        label: "Senior Developer",
-        value: "Senior Developer"
-      },
-      {
-        label: "Intern",
-        value: "Intern"
-      },
-      {
-        label: "Student",
-        value: "Student"
-      },
-      {
-        label: "Hobby",
-        value: "Hobby"
-      },
-      {
-        label: "Other",
-        value: "Other"
-      }
-    ];
-
     return (
       <div className="create-profile">
         <div className="container">
@@ -176,7 +141,7 @@ class CreateProfile extends Component {
                   name="status"
                   value={this.state.status}
                   onChange={this.onChange}
-                  options={options}
+                  options={StatusOptions}
                   error={errors.status}
                   info="* Select the option that closest describes your current career level"
                 />

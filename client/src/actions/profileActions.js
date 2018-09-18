@@ -3,6 +3,8 @@ import axios from "axios";
 import {
   GET_PROFILE,
   GET_PROFILES,
+  GET_EXPERIENCE,
+  GET_EDUCATION,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE,
   GET_ERRORS,
@@ -61,7 +63,7 @@ export const createProfile = (profileData, history) => dispatch => {
 };
 
 // Get all Profiles
-export const getProfiles = (profileData, history) => dispatch => {
+export const getProfiles = () => dispatch => {
   dispatch(setProfileLoading());
   axios
     .get("/api/profile/all")
@@ -83,7 +85,56 @@ export const getProfiles = (profileData, history) => dispatch => {
 export const addExperience = (expData, history) => dispatch => {
   axios
     .post("/api/profile/experience", expData)
+    .then(res => res.json())
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Get experience
+export const getExperience = id => dispatch => {
+  axios
+    .get(`/api/profile/experience/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_EXPERIENCE,
+        payload: res.data
+      })
+    )
+    .catch(err =>
+      dispatch({
+        type: GET_EXPERIENCE,
+        payload: {}
+      })
+    );
+};
+
+// Update experience
+export const updateExperience = (id, expData, history) => dispatch => {
+  axios
+    .put(`/api/profile/experience/${id}`, expData)
     .then(res => history.push("/dashboard"))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+
+// Delete Experience
+export const deleteExperience = id => dispatch => {
+  axios
+    .delete(`/api/profile/experience/${id}`)
+    .then(res =>
+      dispatch({
+        type: GET_PROFILE,
+        payload: res.data
+      })
+    )
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -105,16 +156,29 @@ export const addEducation = (eduData, history) => dispatch => {
     );
 };
 
-// Delete Experience
-export const deleteExperience = id => dispatch => {
+// Get education
+export const getEducation = id => dispatch => {
   axios
-    .delete(`/api/profile/experience/${id}`)
+    .get(`/api/profile/education/${id}`)
     .then(res =>
       dispatch({
-        type: GET_PROFILE,
+        type: GET_EDUCATION,
         payload: res.data
       })
     )
+    .catch(err =>
+      dispatch({
+        type: GET_EDUCATION,
+        payload: {}
+      })
+    );
+};
+
+// Update education
+export const updateEducation = (id, eduData, history) => dispatch => {
+  axios
+    .put(`/api/profile/education/${id}`, eduData)
+    .then(res => history.push("/dashboard"))
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
