@@ -28,6 +28,9 @@ class PostItem extends Component {
   }
   render() {
     const { post, auth, showActions } = this.props;
+
+    const liked = this.findUserLike(post.likes);
+
     return (
       <div className="card card-body mb-3">
         <div className="row">
@@ -47,7 +50,7 @@ class PostItem extends Component {
             {showActions ? (
               <span>
                 <button
-                  onClick={this.onLikeClick.bind(this, post._id)}
+                  onClick={liked ? this.onRemoveLikeClick.bind(this, post._id) : this.onLikeClick.bind(this, post._id)}
                   type="button"
                   className="btn btn-light mr-1"
                 >
@@ -57,13 +60,6 @@ class PostItem extends Component {
                     })}
                   />
                   <span className="badge badge-light">{post.likes.length}</span>
-                </button>
-                <button
-                  onClick={this.onRemoveLikeClick.bind(this, post._id)}
-                  type="button"
-                  className="btn btn-light mr-1"
-                >
-                  <i className="text-secondary fas fa-thumbs-down" />
                 </button>
                 <Link to={`/post/${post._id}`} className="btn btn-info mr-1">
                   Comments ({post.comments.length})
