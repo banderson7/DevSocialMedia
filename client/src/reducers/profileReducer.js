@@ -11,7 +11,8 @@ const initialState = {
   profile: null,
   profiles: null,
   loading: false,
-  experience: null
+  experience: null,
+  education: null
 };
 
 export default function(state = initialState, action) {

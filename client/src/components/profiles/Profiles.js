@@ -29,10 +29,8 @@ class Profiles extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-12">
-              <h1 className="h1 display-4 text-center">Developer Profiles</h1>
-              <p className="lead text-center">
-                Browse and connect with developers
-              </p>
+              <h1 className="h1 display-4 text-center">User Profiles</h1>
+              <p className="lead text-center">Browse all user profiles</p>
               {profileItems}
             </div>
           </div>
