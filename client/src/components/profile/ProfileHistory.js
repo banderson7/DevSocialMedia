@@ -11,7 +11,7 @@ class ProfileHistory extends Component {
         <p>
           <Moment format="MM/DD/YYYY">{exp.from}</Moment>
           {" - "}
-          {exp.to === null ? (
+          {exp.to === null || exp.current ? (
             "Now"
           ) : (
             <Moment format="MM/DD/YYYY">{exp.to}</Moment>
@@ -45,7 +45,7 @@ class ProfileHistory extends Component {
         <p>
           <Moment format="MM/DD/YYYY">{edu.from}</Moment>
           {" - "}
-          {edu.to === null ? (
+          {edu.to === null || edu.current ? (
             "Now"
           ) : (
             <Moment

@@ -61,7 +61,8 @@ class EditEducation extends Component {
         from: education.from,
         to: education.to,
         current: education.current,
-        description: education.description
+        description: education.description,
+        disabled: education.current
       });
     }
   }
@@ -169,6 +170,7 @@ class EditEducation extends Component {
                 <TextAreaFieldGroup
                   placeholder="Program Description"
                   name="description"
+                  
                   value={this.state.description}
                   onChange={this.onChange}
                   errors={errors.description}

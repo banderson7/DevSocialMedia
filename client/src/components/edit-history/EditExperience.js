@@ -65,7 +65,8 @@ class EditExperience extends Component {
         from: experience.from,
         to: experience.to,
         current: experience.current,
-        description: experience.description
+        description: experience.description,
+        disabled: experience.current
       });
     }
   }
