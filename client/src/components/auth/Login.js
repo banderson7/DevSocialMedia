@@ -14,14 +14,16 @@ class Login extends Component {
       errors: {}
     };
 
-    this.onChange = this.onChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
+    this.onChangeHandler = this.onChange.bind(this);
+    this.onSubmitHandler = this.onSubmit.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+    if (!this.props.auth.isAuthenticated) {
+      return;
     }
+
+    this.props.history.push("/dashboard");
   }
 
   componentWillReceiveProps(nextProps) {
@@ -35,7 +37,9 @@ class Login extends Component {
   }
 
   onChange(e) {
-    this.setState({ [e.target.name]: e.target.value });
+    this.setState({ 
+      [e.target.name]: e.target.value 
+    })
   }
 
   onSubmit(e) {
@@ -51,20 +55,23 @@ class Login extends Component {
 
   render() {
     const { errors } = this.state;
+
     return (
       <div className="login">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
               <h1 className="display-4 text-center">Log In</h1>
-              <p className="lead text-center">Sign in to your QA Hub account</p>
-              <form noValidate onSubmit={this.onSubmit}>
+              <p className="lead text-center">
+                Sign in to your DevConnector account
+              </p>
+              <form noValidate onSubmit={this.onSubmitHandler}>
                 <TextFieldGroup
                   placeholder="Email Address"
                   name="email"
                   type="email"
                   value={this.state.email}
-                  onChange={this.onChange}
+                  onChange={this.onChangeHandler}
                   error={errors.email}
                 />
                 <TextFieldGroup
@@ -72,7 +79,7 @@ class Login extends Component {
                   name="password"
                   type="password"
                   value={this.state.password}
-                  onChange={this.onChange}
+                  onChange={this.onChangeHandler}
                   error={errors.password}
                 />
                 <input type="submit" className="btn btn-info btn-block mt-4" />
