@@ -17,11 +17,11 @@ class Education extends Component {
         <td>{edu.degree}</td>
         <td>{edu.fieldofstudy}</td>
         <td>
-          <Moment format="YYYY/MM/DD">{edu.from}</Moment> -{" "}
-          {edu.to === null ? (
+          <Moment format="DD/MM/YYYY">{edu.from}</Moment> -{" "}
+          {edu.current === true || edu.to === null ? (
             "Now"
           ) : (
-            <Moment format="YYYY/MM/DD">{edu.to}</Moment>
+            <Moment format="DD/MM/YYYY">{edu.to}</Moment>
           )}
         </td>
         <td style={{ textAlign: "right" }}>

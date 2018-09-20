@@ -176,7 +176,7 @@ class EditEducation extends Component {
                 />
                 <input
                   type="submit"
-                  value="Submit"
+                  value="Save Changes"
                   className="btn btn-info btn-block mt-4"
                 />
               </form>
