@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import TextAreaFieldGroup from "../common/TextAreaFieldGroup";
 import { addComment } from "../../actions/postActions";
+import { getCurrentProfile } from "../../actions/profileActions";
 
 class CommentForm extends Component {
   constructor(props) {
@@ -14,6 +15,10 @@ class CommentForm extends Component {
 
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    this.props.getCurrentProfile();
   }
 
   componentWillReceiveProps(newProps) {
@@ -29,11 +34,13 @@ class CommentForm extends Component {
 
     const { user } = this.props.auth;
     const { postId } = this.props;
+    const { profile } = this.props.profile;
 
     const newComment = {
       text: this.state.text,
       name: user.name,
-      avatar: user.avatar
+      avatar: user.avatar,
+      handle: profile.handle
     };
 
     this.props.addComment(postId, newComment);
@@ -75,6 +82,7 @@ class CommentForm extends Component {
 }
 
 CommentForm.propTypes = {
+  getCurrentProfile: PropTypes.func.isRequired,
   addComment: PropTypes.func.isRequired,
   postId: PropTypes.string.isRequired,
   auth: PropTypes.object.isRequired,
@@ -82,11 +90,12 @@ CommentForm.propTypes = {
 };
 
 const mapStateToProps = state => ({
+  profile: state.profile,
   auth: state.auth,
   errors: state.errors
 });
 
 export default connect(
   mapStateToProps,
-  { addComment }
+  { addComment, getCurrentProfile }
 )(CommentForm);

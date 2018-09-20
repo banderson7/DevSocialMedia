@@ -35,13 +35,13 @@ class PostItem extends Component {
       <div className="card card-body mb-3">
         <div className="row">
           <div className="col-md-2">
-            <a href="profile.html">
+            <Link to={`/profile/${post.handle}`}>
               <img
                 className="rounded-circle d-none d-md-block"
                 src={post.avatar}
                 alt=""
               />
-            </a>
+            </Link>
             <br />
             <p className="text-center">{post.name}</p>
           </div>
@@ -50,7 +50,11 @@ class PostItem extends Component {
             {showActions ? (
               <span>
                 <button
-                  onClick={liked ? this.onRemoveLikeClick.bind(this, post._id) : this.onLikeClick.bind(this, post._id)}
+                  onClick={
+                    liked
+                      ? this.onRemoveLikeClick.bind(this, post._id)
+                      : this.onLikeClick.bind(this, post._id)
+                  }
                   type="button"
                   className="btn btn-light mr-1"
                 >

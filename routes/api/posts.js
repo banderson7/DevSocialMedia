@@ -47,6 +47,7 @@ router.post(
       text: req.body.text,
       name: req.body.name,
       avatar: req.body.avatar,
+      handle: req.body.handle,
       user: req.user.id
     });
 
@@ -161,7 +162,8 @@ router.post(
           text: req.body.text,
           name: req.body.name,
           avatar: req.body.avatar,
-          user: req.user.id
+          user: req.user.id,
+          handle: req.body.handle
         };
 
         // Add to comments array
