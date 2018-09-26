@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import { PropTypes } from "prop-types";
-import { connect } from "react-redux";
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
 
 class Landing extends Component {
   componentDidMount() {
     if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+      this.props.history.push('/dashboard');
     }
   }
 
@@ -17,7 +17,7 @@ class Landing extends Component {
           <div className="container">
             <div className="row">
               <div className="col-md-12 text-center">
-                <h1 className="display-3 mb-4">QA Hub</h1>
+                <h1 className="display-3 mb-4">NQA Social Media</h1>
                 <p className="lead"> Create a profile, share posts and test</p>
                 <hr />
                 <Link to="/register" className="btn btn-lg btn-info mr-2">
