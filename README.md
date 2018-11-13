@@ -9,3 +9,6 @@ npm install
 npm run client-install
 npm run dev
 ```
+
+The page will be accessable via localhost:3000
+The API will be accessable via localhost:5000/api
