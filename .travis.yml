@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 language: java
 jdk:
   - oraclejdk8
@@ -10,6 +11,13 @@ install:
   - nvm install $NODE_VERSION
   - npm install
 
+=======
+language: node_js
+node_js:
+  - '8'
+sudo: false
+
+>>>>>>> 7da188a44e11372058b1e374a344f4478e4db3d2
 branches:
   only:
     - master
@@ -25,3 +33,9 @@ deploy:
   api-key:
     secure: $HEROKU_API_KEY
   app: nqa-social-media
+<<<<<<< HEAD
+=======
+
+after_deploy:
+  - echo "Deploy Complete"
+>>>>>>> 7da188a44e11372058b1e374a344f4478e4db3d2
