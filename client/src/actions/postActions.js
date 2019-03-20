@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from 'axios';
 import {
   ADD_POST,
   GET_ERRORS,
@@ -7,13 +7,13 @@ import {
   POST_LOADING,
   DELETE_POST,
   CLEAR_ERRORS
-} from "./types";
+} from './types';
 
 // Add Post
 export const addPost = postData => dispatch => {
   dispatch(clearErrors());
   axios
-    .post("/api/posts", postData)
+    .post('/api/posts', postData)
     .then(res =>
       dispatch({
         type: ADD_POST,
@@ -30,9 +30,10 @@ export const addPost = postData => dispatch => {
 
 // Get Posts
 export const getPosts = () => dispatch => {
+  dispatch(clearErrors());
   dispatch(setPostLoading());
   axios
-    .get("/api/posts")
+    .get('/api/posts')
     .then(res =>
       dispatch({
         type: GET_POSTS,
@@ -49,6 +50,7 @@ export const getPosts = () => dispatch => {
 
 // Get Post
 export const getPost = id => dispatch => {
+  dispatch(clearErrors());
   dispatch(setPostLoading());
   axios
     .get(`/api/posts/${id}`)
@@ -69,7 +71,7 @@ export const getPost = id => dispatch => {
 // Reload Posts without loading icon
 export const reloadPosts = () => dispatch => {
   axios
-    .get("/api/posts")
+    .get('/api/posts')
     .then(res =>
       dispatch({
         type: GET_POSTS,
