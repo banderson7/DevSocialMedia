@@ -18,7 +18,7 @@ class Landing extends Component {
             <div className="row">
               <div className="col-md-12 text-center">
                 <h1 className="display-3 mb-4">NQA Social Media</h1>
-                <p className="lead"> Create a profile, share posts and test</p>
+                <p className="lead"> Create a profile, share posts</p>
                 <hr />
                 <Link to="/register" className="btn btn-lg btn-info mr-2">
                   Sign Up
